@@ -15,7 +15,7 @@
         }
         .heart {
             position: absolute;
-            font-size: 24px;
+            font-size: 50px;
             color: red;
             animation: floatUp 5s linear infinite;
         }
@@ -92,7 +92,7 @@
             setTimeout(() => message.style.opacity = 0, 1500);
 
             // Remove heart after animation
-            setTimeout(() => heart.remove(), 2000);
+            setTimeout(() => heart.remove(), 1500);
         }
 
         document.body.addEventListener("click", createHeart);
