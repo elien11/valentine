@@ -1,128 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
-    <style>
-        body {
-            background-color: #ffc0cb;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-        .heart {
-            position: absolute;
-            font-size: 50px;
-            color: red;
-            animation: floatUp 5s linear infinite;
-        }
-        @keyframes floatUp {
-            from {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        .btn {
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 20px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #ff1493;
-        }
-        .hidden {
-            display: none;
-        }
-        .puzzle {
-            font-size: 18px;
-            margin: 20px 0;
-        }
-        .message {
-            position: absolute;
-            font-size: 24px;
-            font-family: 'Arial', sans-serif;
-            color: white;
-            opacity: 0;
-            transition: opacity 1s;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>
-    <script>
-        function createHeart(e) {
-            let heart = document.createElement("div");
-            heart.innerHTML = "❤️";
-            heart.classList.add("heart");
-            heart.style.left = `${e.pageX - 15}px`; // Adjust to mouse position
-            heart.style.top = `${e.pageY - 15}px`; // Adjust to mouse position
-            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-            document.body.appendChild(heart);
-            
-            // Create message
-            let message = document.createElement("div");
-            message.classList.add("message");
-            message.innerText = "I love you";
-            message.style.left = `${e.pageX - 60}px`;
-            message.style.top = `${e.pageY - 50}px`;
-            document.body.appendChild(message);
-            
-            // Make the message fade in and out
-            setTimeout(() => message.style.opacity = 1, 100);
-            setTimeout(() => message.style.opacity = 0, 1500);
+function createHeart(e) {
+    let heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.classList.add("heart");
+    heart.style.left = `${e.pageX - 15}px`; // Adjust to mouse position
+    heart.style.top = `${e.pageY - 15}px`; // Adjust to mouse position
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+    
+    // Create message
+    let message = document.createElement("div");
+    message.classList.add("message");
+    message.innerText = "I love you";
+    message.style.left = `${e.pageX - 60}px`;
+    message.style.top = `${e.pageY - 50}px`;
+    document.body.appendChild(message);
+    
+    // Make the message fade in and out
+    setTimeout(() => {
+        message.style.opacity = 1; // Fade in
+    }, 100);
+    setTimeout(() => {
+        message.style.opacity = 0; // Fade out
+        // Remove message after fade out
+        setTimeout(() => message.remove(), 1500);
+    }, 1500);
 
-            // Remove heart after animation
-            setTimeout(() => heart.remove(), 1500);
-        }
-
-        document.body.addEventListener("click", createHeart);
-    </script>
-
-    <div class="container">
-        <h1>My pretty Greta,</h1>
-        <p>Hi my love, I hope this message finds you well and happy. Even though the distance separates us, I've never felt closer to you. Even though I've never touched you, I feel caressed and cared about by every word of yours. It brings me warmth and a sense of familiarity that I've only experienced by loving you. I love you, and there is something I wish to ask, but first, a little challenge...</p>
-        <div class="puzzle">
-            <p><strong>Unscramble the letters to reveal how I feel about you...</strong></p>
-            <p><strong>O U Y $ R E A $ Y M $ H L E O W $ W L O R D $ D N A $ U O L S </strong></p>
-            <input type="text" id="answer" placeholder="SMARTY PANTS TYPE HERE">
-            <button class="btn" onclick="checkAnswer()">Submit</button>
-        </div>
-        <div id="message" class="hidden">
-            <h2>You got it! Now, my love...</h2>
-            <h2>Will You Be My Valentine? ❤️</h2>
-            <h4>Text me "HORAAA" if yes and "WAWA" if no. Something much bigger is coming, baby......</h4>
-        </div>
-    </div>
-
-    <script>
-        function checkAnswer() {
-            let answer = document.getElementById('answer').value.toLowerCase();
-            if (answer === "you are my whole world and soul") {
-                document.getElementById('message').classList.remove('hidden');
-            } else {
-                alert("Hmm maybe but not quite right, try again my love...");
-            }
-        }
-    </script>
-</body>
-</html>
+    // Remove heart after animation
+    setTimeout(() => heart.remove(), 2000);
+}
